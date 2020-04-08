@@ -123,13 +123,13 @@
 方法2：键入 html 语言换行标签：`<br>`
 
 ### 八、插入链接
-1. 行内形式
+1. 行内形式<br>
 这是[链接文字](链接网址 "标题")
 
 ```
 [链接文字](链接网址 "标题")
 ```
-2. 参考形式
+2. 参考形式<br>
 为了多次重复引用某个链接，定义一个名称，为该名称绑定一个链接
 
 ```
@@ -155,7 +155,7 @@
 [Online]: https://dict.eudic.net/ "《欧路词典》在线版"
 [Khd]: https://www.eudic.net/v4/en/app/eudic "《欧路词典》英语翻译软件"
 
-3.自动链接
+3.自动链接<br>
 用< > 直接包裹链接
 
 ```
@@ -163,7 +163,7 @@
 <address@example.com>
 ```
 输出结果：
-<https://www.baidu.com/>
+<https://www.baidu.com/><br>
 <address@example.com>
 
 
