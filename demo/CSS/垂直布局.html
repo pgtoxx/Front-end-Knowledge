@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直布局</title>
+</head>
+<body>
+<style>
+    .strong{
+        color : #d32024;
+    }
+    /* 固定宽高容器内，行内元素垂直水平居中，line-height等于容器高度 */
+    #example1{
+        width : 300px;
+        height : 100px;
+        /*text-align: center;*/
+        line-height: 100px;
+        background-color: aliceblue;
+    }
+
+    /*块级元素宽高确定，父元素宽高不确定,用absolute, margin:auto */
+    #example2-container{
+        position : relative;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example2{
+        position:absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 50px;
+        width: 300px;
+        background-color:#ddd;
+    }
+
+    /*块级元素宽高不确定，父元素宽高不确定，用display:flex 和 margin:auto*/
+    #example3-container{
+        display: flex;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example3{
+        margin: auto;
+        /*height: 80px;*/
+        /*width: 300px;*/
+        background-color:#ddd;
+    }
+
+    /*绝对定位，trasform:translateY(-50%)*/
+
+    #example4-container{
+        position: relative;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example4{
+        position: absolute;
+        top : 50%;
+        transform: translateY(-50%);
+        background-color:#ddd;
+    }
+
+    /*单个块级元素宽高不确定，父元素宽高不确定，父元素设置dispaly:table-cell，vertical-align:middle*/
+    #example5-container{
+        display: table-cell;
+        height : 100px;
+        vertical-align: middle;
+        background-color: bisque;
+
+    }
+    #example5{
+        display: inline-block;
+        vertical-align: middle;
+        /*width : 100px;*/
+        background-color:#ddd;
+    }
+    #example5-br{
+        display: inline-block;
+        width : 50px;
+        vertical-align: middle;
+        background-color:#ddd;
+
+    }
+    #example5-container a{
+        /*display: none;*/
+        /*vertical-align: middle;*/
+    }
+
+    /* 父元素的伪类：before设置, 内部元素设置为display:inline-block,vertical-align:middle*/
+    #example6-container{
+        height : 200px;
+        background-color: bisque;
+    }
+    #example6-container:before{
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em;
+    }
+    #example6{
+        display : inline-block;
+        vertical-align: middle;
+
+
+        width: 100px;
+        background-color:#ddd;
+
+    }
+    #example6-container a{
+        vertical-align: middle;
+    }
+
+    /*行内元素为图片*/
+    #example7{
+        line-height: 100px;
+
+        background-color: aliceblue;
+    }
+    #example7 img{
+        width : 50px;
+        height : 50px;
+        vertical-align: middle;
+    }
+</style>
+
+
+<div>
+    <p>举例1：父元素高度确定，行内元素垂直居中,并且只能是单行文本</p>
+    <div id="example1">
+        我是行内元素
+    </div>
+</div>
+
+<div>
+    <p>举例2：<span class="strong">块级元素宽高确定，父元素宽高不确定</span>，用absolute, margin:auto. 父元素不是relative，则相对整个视窗。测试时可以调整父元素的高度。
+        如果块级元素宽高不确定，并设置了left、right、top、bottom的值为0，则块级元素会撑开，宽高与父元素相同。</p>
+    <div id="example2-container">
+        <div id="example2">
+            块级元素，宽度高度确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例3：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，用 margin:auto. 父元素设置display:flex,<a target="_blank" href="https://github.com/chokcoco/iCSS/issues/64
+">探秘flex上下文中神奇的margin:auto</a></p>
+    <div id="example3-container">
+        <div id="example3">
+            块级元素，宽度高度不确定，宽度高度不确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例4：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，用绝对定位，trasform:translateY(-50%)，同时设置top值 </p>
+    <div id="example4-container">
+        <div id="example4">
+            块级元素，宽度高度不确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例5：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，父元素设置dispaly:table-cell，vertical-align:middle</p>
+    <div id="example5-container">
+        <div id="example5">
+            块级元素，宽度高度不确定
+        </div>
+        <a href="">a标签</a>
+        <div id="example5-br">
+            块级元素，限制高度
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例6：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>。存在多个平行元素或为多行文本时，设置一个幽灵元素。与例5的效果相同</p>
+    <div id="example6-container">
+        <div id="example6">
+            块级元素，宽度高度不确定。块级元素，宽度高度不确定。
+        </div>
+        <a href="#">a标签</a>
+    </div>
+</div>
+
+<div>
+    <p>举例7：父元素高度确定，图片垂直居中</p>
+    <div id="example7">
+        <img src="./images/pretty.jpg" alt="">
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水平布局</title>
+</head>
+<body>
+<style>
+.strong{
+    color : #d32024;
+}
+/* 固定宽高容器内，行内元素垂直水平居中，text-align: center */
+#example1{
+    width : 300px;
+    height : 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: aliceblue;
+}
+
+/* 块级元素宽度确定，容器宽度不确定,用margin : 0 auto */
+#example2-container{
+    width : 100%;
+    background-color: bisque;
+}
+#example2{
+    width : 400px;
+    margin : 0 auto;
+    background-color:#ddd;
+}
+
+/*块级元素宽度确定，容器宽度不确定,用position:absolute,margin-left: 50%,left:偏移块级元素一半宽度*/
+#example3-container{
+    position: relative;
+
+    width : 100%;
+    background-color: bisque;
+}
+#example3{
+    position : absolute;
+    margin-left: 50%;
+    left : -200px;
+
+    width : 400px;
+    background-color:#ddd;
+}
+
+/*块级元素宽度不确定，容器宽度不确定,*/
+#example4-container{
+
+    background-color: bisque;
+}
+#example4{
+    display: table;
+    margin : 0 auto;
+    background-color:#ddd;
+}
+
+
+
+/*转变成内联元素*/
+#example5-container{
+    text-align: center;
+    background-color: bisque;
+}
+#example5{
+    display: inline-block;
+    background-color:#ddd;
+}
+
+/*flex布局 display:flex;
+    justify-content:center;*/
+#example6-container{
+    display:flex;
+    justify-content:center;
+    /*align-items: center;*/
+    background-color: bisque;
+}
+
+#example6{
+
+    background-color:#ddd;
+}
+
+/*绝对定位，transform: translateX(-50%)*/
+#example7-container{
+    position : relative;
+    background-color: bisque;
+}
+#example7{
+    position: absolute;
+    /* 这个left right top bottom 使用百分比是相对于父元素 */
+    left : 50%;
+    /* css3中 transform等是相对于元素本身 */
+    transform: translateX(-50%);
+    background-color:#ddd;
+}
+
+/*flex布局 display:flex;
+margin-left:auto;margin-right:auto*/
+#example8-container{
+    display:flex;
+
+    background-color: bisque;
+}
+
+#example8{
+    margin-left: auto;
+    margin-right : auto;
+    background-color:#ddd;
+}
+
+/*绝对定位， margin:auto; left:0; right:0 */
+#example9-container{
+    position : relative;
+    background-color: bisque;
+}
+#example9{
+    position: absolute;
+    /* 这个left right top bottom 使用百分比是相对于父元素 */
+    left : 0;
+    right : 0;
+    margin : auto;
+    width: 400px;
+    background-color:#ddd;
+}
+
+
+</style>
+<div >
+    <p >举例1：固定宽高容器内，行内元素垂直水平居中,text-align: center;line-height: 50px;</p>
+    <div id="example1">
+        我是行内元素
+    </div>
+</div>
+<div >
+    <p >举例2：<span class="strong">块级元素宽度确定</span>，容器宽度不确定,margin : 0 auto;</p>
+    <div id="example2-container">
+        <div id="example2">
+            我是块级元素，确定宽度
+        </div>
+    </div>
+</div>
+<div >
+    <p >举例3：<span class="strong">块级元素宽度确定</span>，容器宽度不确定,用position:absolute布局,绝对定位脱离了文档流</p>
+    <div id="example3-container">
+        <div id="example3">
+            我是块级元素，确定宽度
+        </div>
+    </div>
+</div>
+<div style="margin-top:50px">
+    <p >举例9：<span class="strong">块级元素宽度确定</span>，容器宽度不确定,用absolute,margin:auto; left:0; right:0,与例3对比</p>
+    <div id="example9-container">
+        <div id="example9">
+            我是块级元素，宽度不确定
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:50px">
+    <p >举例4：<span class="strong">块级元素宽度不确定</span>，容器宽度不确定,用display:table布局,设置高度不生效</p>
+    <div id="example4-container">
+        <div id="example4">
+            我是块级元素，宽度不确定XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        </div>
+    </div>
+</div>
+
+<div>
+    <p >举例5：<span class="strong">块级元素宽度不确定</span>，容器宽度不确定,用display:inline-block;父元素设置text-align:center</p>
+    <div id="example5-container">
+        <div id="example5">
+            我是块级元素，宽度不确定XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        </div>
+    </div>
+</div>
+<div>
+    <p >举例6：<span class="strong">块级元素宽度不确定</span>，容器宽度不确定,用display:flex;justify-content:center; 块级元素本身整体被撑开</p>
+    <div id="example6-container">
+        <div id="example6">
+            我是块级元素，宽度不确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p >举例7：<span class="strong">块级元素宽度不确定</span>，容器宽度不确定,用absolute,transform:translateX(-50%),与例3对比</p>
+    <div id="example7-container">
+        <div id="example7">
+            我是块级元素，宽度不确定
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:50px">
+    <p >举例8：<span class="strong">块级元素宽度不确定</span>，容器宽度不确定,用display:flex;本身margin-left:auto;margin-right:auto </p>
+    <div id="example8-container">
+        <div id="example8">
+            我是块级元素，宽度不确定
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

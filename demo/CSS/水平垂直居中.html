@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    /*元素为inline或inline-block，容器宽度不确定,*/
+    #example1-container{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+
+        height: 50px;
+        width: 1000px;
+        background-color: bisque;
+    }
+    #example1{
+        display: inline-block;
+        vertical-align: middle;
+
+        background-color:#ddd;
+    }
+
+    /*块级元素宽高确定，父元素宽高不确定,用absolute, margin:auto */
+    #example2-container{
+        position : relative;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example2{
+        position:absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 50px;
+        width: 300px;
+        background-color:#ddd;
+    }
+
+    /*块级元素宽高确定，父元素宽高不确定,用absolute, left:50%,top:50% */
+    #example3-container{
+        position : relative;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example3{
+        position:absolute;
+        margin-left: -150px;
+        margin-top:-25px;
+        top: 50%;
+        left: 50%;
+        height: 50px;
+        width: 300px;
+        background-color:#ddd;
+    }
+    /*绝对定位，trasform:translateY(-50%)*/
+
+    #example4-container{
+        position: relative;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example4{
+        position: absolute;
+        top : 50%;
+        left : 50%;
+        transform: translate(-50%,-50%);
+        background-color:#ddd;
+    }
+
+    /*块级元素宽高不确定，父元素宽高不确定，用display:flex 和 margin:auto*/
+    #example5-container{
+        display: flex;
+        height : 100px;
+        background-color: bisque;
+    }
+    #example5{
+        margin: auto;
+        /*height: 80px;*/
+        /*width: 300px;*/
+        background-color:#ddd;
+    }
+
+    /*块级元素宽高不确定，父元素宽高不确定，用display:flex;justify-content: center;
+        align-items: center;*/
+    #example6-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height : 100px;
+        background-color: bisque;
+    }
+    #example6{
+
+
+        background-color:#ddd;
+    }
+
+
+</style>
+
+<div>
+    <p >举例1：<span class="strong">元素为inline或inline-block</span>,用display:table-cell布局,vertical-align:middle; text-align:center</p>
+    <div id="example1-container">
+        <div id="example1">
+            我是块级元素，宽度不确定XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例2：<span class="strong">块级元素宽高确定，父元素宽高不确定</span>，用absolute, margin:auto. 父元素不是relative，则相对整个视窗。测试时可以调整父元素的高度。
+        如果块级元素宽高不确定，并设置了left、right、top、bottom的值为0，则块级元素会撑开，宽高与父元素相同。</p>
+    <div id="example2-container">
+        <div id="example2">
+            块级元素，宽度高度确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例3：<span class="strong">块级元素宽高确定，父元素宽高不确定</span>，用absolute, top:50%,left:50%，margin-left：-width/2, margin-top: -height/2</p>
+    <div id="example3-container">
+        <div id="example3">
+            块级元素，宽度高度确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例4：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，用absolute, top:50%, left:50%; transform:translate(-50%,-50%)</p>
+    <div id="example4-container">
+        <div id="example4">
+            块级元素，宽度高度确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例5：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，用 margin:auto. 父元素设置display:flex,<a target="_blank" href="https://github.com/chokcoco/iCSS/issues/64
+">探秘flex上下文中神奇的margin:auto</a></p>
+    <div id="example5-container">
+        <div id="example5">
+            块级元素，宽度高度不确定，宽度高度不确定
+        </div>
+    </div>
+</div>
+
+<div>
+    <p>举例6：<span class="strong">块级元素宽高不确定，父元素宽高不确定</span>，父元素设置display:flex; align-items:center；justify-content: center</p>
+    <div id="example6-container">
+        <div id="example6">
+            块级元素，宽度高度不确定，宽度高度不确定
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
