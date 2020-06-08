@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>slot插槽的使用</title>
+    </head>
+    <body>
+        <script src="./js/vue.js"></script>
+        
+        <div id="app">
+            <h3>默认插槽、具名插槽、作用域插槽的区别</h3>
+            <p>
+                插槽，也就是slot，是组件的一块HTML模板，这块模板显示不显示，以及怎样显示由父组件来决定。<br/>
+                实际上，一个slot<strong>最核心的</strong>两个问题这里就点出来了，是<strong>显示不显示和怎样显示</strong>。<br><br>
+                由于插槽是一块模板，所以，对于任何一个组件，从模板种类的角度来分，其实都可以分为非插槽模板和插槽模板两大类。<br>
+                非插槽模板指的是html模板，指的是‘div、span、ul、table’这些，非插槽模板的显示与隐藏以及怎样显示<strong>由插件自身控制</strong>；<br>
+                插槽模板是slot，它是一个空壳子，因为它显示与隐藏以及最后用什么样的html模板显示<strong>由父组件控制</strong>。<br>
+                <strong>但是插槽显示的位置确由子组件自身决定，slot写在组件template的哪块，父组件传过来的模板将来就显示在哪块。</strong>
+                <br><br>
+                作用域插槽要求，在slot上面绑定数据。<br>
+                作用域插槽绑定了一套数据，父组件可以拿来用。
+            </p>
+            <!-- 含默认插槽的组件调用-->
+            <default-slot>
+                <p style="color:red">你好，我是默认插槽，文本格式</p>
+            </default-slot>
+
+            <!-- 含具名插槽的组件调用 -->
+            <named-slot>
+                <template v-slot:header> 
+                    <section>
+                        <strong>header插槽</strong>
+                    </section>
+                </template>
+                <template v-slot:default>
+                    <section>
+                        <strong>default插槽</strong>
+                    </section>
+                </template>
+                <template v-slot:footer>
+                    <section>
+                        <strong>footer插槽</strong>
+                    </section>
+                </template>
+            </named-slot>
+
+            <!-- 含有作用域插槽的组件的调用 -->
+            <scope-slot>
+                <template v-slot:default="slotProps">
+                     {{slotProps.user.lastName}}   <!-- 这行注释掉的话，就显示本身的firstName-->
+                </template>
+            </scope-slot>
+
+
+        </div>
+
+        <script>
+            // 含有默认插槽的组件
+            Vue.component('DefaultSlot',{
+                template:`
+                    <div>
+                        <slot></slot>
+                    </div>
+                `,
+                data(){
+                    return {
+                        msg:'默认插槽'
+                    }
+                }
+            })
+
+            // 含有具名插槽的组件
+            Vue.component('NamedSlot',{
+                template:`
+                <div>
+                    <p ><span style="color:red">你好，我是含有具名插槽的组件。</span><br/>
+                        我有三个具名插槽，header，default，footer. <br/>
+                        &lt;slot&gt;元素有一个特殊的属性name。在为具名插槽提供内容时，可以在&lt;template&gt;元素上使用v-slot指令，并以v-slot的参数的形式提供其名称。</p>
+                    <header>
+                        <slot name="header"></slot>
+                    </header>  
+                    <main>
+                        <slot name="default"></slot>
+                    </main>
+                    <footer>
+                        <slot name="footer"></slot>
+                    </footer>
+                </div>
+                `,
+                data(){
+                    return {
+                        msg:"具名插槽"
+                    }
+                }
+            })
+
+            //含有作用域插槽的组件
+            Vue.component('ScopeSlot',{
+                template:`
+                <div>
+                    <p>
+                        <span style="color:red">你好，我是作用域插槽组件 </span><br/>
+                        作用域插槽可以理解为带数据的插槽，数据传递的方向是由子组件向父组件传递，具有单一性。<br/>
+                        可以理解为：数据在子组件中已经存在，如果父组件需要修改子组件中插槽的数据展示，就需要用到作用域插槽。<br/>
+                        完成这项操作:<br/>
+                        1.需要在&lt;slot&gt;元素上添加属性v-bind:user = user, 即插槽prop <br/>
+                        2.父组件上通过v-slot:default="slotProps" 获取名称为default的slot上的数据  <br/>
+                    </p>
+                    <slot v-bind:user = "user" >
+                        {{user.firstName}}
+                    </slot>   
+                </div>
+                `,
+                data(){
+                    return {
+                        msg:'作用域插槽',
+                        user:{
+                            firstName:"tao",
+                            lastName:"peng"
+                        }
+                    }
+                }
+
+            })
+
+
+            new Vue({
+                el:"#app",
+                data:{
+                    
+                }
+            })
+        </script>
+    </body>
+</html>
